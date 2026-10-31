@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vela Plugin Market</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <div>
+        <p class="eyebrow">VELA · PLUGIN MARKET</p>
+        <h1>插件市场</h1>
+        <p class="lede">上传 .vpk，审核上架，搜索并安装到 Vela Desktop。</p>
+      </div>
+      <div id="account-area" class="account-area">
+        <div id="account-guest">
+          <form id="login-form" class="auth-form">
+            <input id="login-username" placeholder="用户名" autocomplete="username" required />
+            <input id="login-password" type="password" placeholder="密码" autocomplete="current-password" required />
+            <button type="submit" class="primary">登录</button>
+            <button id="register-button" type="button">注册</button>
+          </form>
+          <p id="auth-status" class="status" role="status" aria-live="polite"></p>
+        </div>
+        <div id="account-user" hidden>
+          <span id="account-name" class="account-name"></span>
+          <button id="logout-button" type="button">退出</button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="panel">
+        <div class="panel-head">
+          <h2>已上架</h2>
+          <span id="count" class="muted"></span>
+        </div>
+        <form id="search-form" class="filters" role="search">
+          <input id="search" type="search" placeholder="搜索名称、发布者、标签" aria-label="搜索插件" />
+          <select id="category" aria-label="分类">
+            <option value="">全部分类</option>
+          </select>
+          <select id="sort" aria-label="排序">
+            <option value="recent">最新</option>
+            <option value="downloads">下载最多</option>
+            <option value="rating">评分最高</option>
+          </select>
+          <label class="check"><input id="featured" type="checkbox" /> 精选</label>
+          <button type="submit">搜索</button>
+        </form>
+        <div id="status" class="status" role="status" aria-live="polite"></div>
+        <div id="plugins" class="grid"></div>
+      </section>
+
+      <aside class="side">
+        <section id="upload-panel" class="panel" hidden>
+          <h2>发布 VPK</h2>
+          <p class="muted">发布者上传后进入待审核；管理员上传会直接上架。</p>
+          <form id="upload-form">
+            <label>VPK 文件<input id="file" name="file" type="file" accept=".vpk,application/zip" required /></label>
+            <label>描述<textarea id="description" rows="3" maxlength="500" placeholder="一句话介绍这个插件"></textarea></label>
+            <label>分类<select id="upload-category"></select></label>
+            <label>标签<input id="tags" maxlength="200" placeholder="calculator, solid" /></label>
+            <button type="submit" class="primary">提交审核</button>
+            <p id="upload-status" class="status" role="status" aria-live="polite"></p>
+          </form>
+        </section>
+
+        <section id="my-panel" class="panel" hidden>
+          <h2>我的插件</h2>
+          <p class="muted">发布者可以查看待审核、已上架与拒绝原因。</p>
+          <div id="my-list" class="admin-list"></div>
+          <p id="my-status" class="status" role="status" aria-live="polite"></p>
+        </section>
+
+        <section id="admin-panel" class="panel" hidden>
+          <h2>待审核</h2>
+          <p class="muted">管理员可以设置分类、精选并批准或拒绝。</p>
+          <div id="admin-list" class="admin-list"></div>
+          <p id="admin-status" class="status" role="status" aria-live="polite"></p>
+        </section>
+      </aside>
+    </main>
+
+    <dialog id="reviews-dialog">
+      <h2>评论 <span id="reviews-plugin-name"></span></h2>
+      <div id="reviews-list" class="reviews-list"></div>
+      <div class="dialog-actions">
+        <button id="reviews-close" type="button">关闭</button>
+      </div>
+    </dialog>
+
+    <dialog id="review-dialog">
+      <form id="review-form" method="dialog">
+        <h2>评价 <span id="review-plugin-name"></span></h2>
+        <label>评分
+          <select id="review-rating">
+            <option value="5">5 星</option>
+            <option value="4">4 星</option>
+            <option value="3">3 星</option>
+            <option value="2">2 星</option>
+            <option value="1">1 星</option>
+          </select>
+        </label>
+        <label>评论<textarea id="review-body" rows="4" maxlength="1000" required></textarea></label>
+        <div class="dialog-actions">
+          <button id="review-cancel" type="button">取消</button>
+          <button type="submit" class="primary">提交评价</button>
+        </div>
+        <p id="review-status" class="status" role="status" aria-live="polite"></p>
+      </form>
+    </dialog>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

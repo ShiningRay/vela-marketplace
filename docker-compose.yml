@@ -1,0 +1,15 @@
+services:
+  marketplace:
+    build: .
+    ports:
+      - "4320:4320"
+    environment:
+      MARKETPLACE_ADMIN_TOKEN: ${MARKETPLACE_ADMIN_TOKEN:?set MARKETPLACE_ADMIN_TOKEN}
+      MARKETPLACE_ADMIN_USERNAME: ${MARKETPLACE_ADMIN_USERNAME:-admin}
+      MARKETPLACE_ADMIN_PASSWORD: ${MARKETPLACE_ADMIN_PASSWORD:?set MARKETPLACE_ADMIN_PASSWORD}
+    volumes:
+      - vela-market-data:/data
+    restart: unless-stopped
+
+volumes:
+  vela-market-data:

@@ -1,0 +1,7 @@
+node_modules/
+data/
+dist/
+coverage/
+test-results/
+.DS_Store
+.env
