@@ -110,6 +110,10 @@ docker run -d --name vela-marketplace -p 4320:4320 \
 - 上传令牌/管理员密码只从环境变量读取，不写入仓库。
 - 单实例 JSON 存储：无邮箱验证、找回密码、对象存储、病毒扫描或签名校验。
 
+## Roadmap
+
+上线阻断项、产品待办与规模化触发条件见 [ROADMAP.md](ROADMAP.md)。
+
 ## License
 
 MIT
